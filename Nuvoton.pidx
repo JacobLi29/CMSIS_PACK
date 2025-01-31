@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <index schemaVersion="1.1.0" xs:noNamespaceSchemaLocation="PackIndex.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance">
   <vendor>Nuvoton</vendor>
-  <url>https://github.com/JacobLi29/CMSIS_PACK/raw/main/</url>
+  <url>https://github.com/JacobLi29/CMSIS_PACK/raw/refs/heads/main/</url>
   <timestamp>2024-12-06T12:00:10.7300074+00:00</timestamp>
   <pindex>
       <pdsc url="https://github.com/JacobLi29/CMSIS_PACK/raw/main/" vendor="Nuvoton" name="NPCX_DFP" version="1.0.0"/>
