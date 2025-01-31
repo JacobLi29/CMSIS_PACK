@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.7.37" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Open-CMSIS-Pack/Open-CMSIS-Pack-Spec/v1.7.37/schema/PACK.xsd">
+  <vendor>Nuvoton</vendor>
+  <name>NPCX_DFP</name>
+  <description>Nuvoton Embedded Controller Device Family Pack</description>
+  <url>https://github.com/JacobLi29/CMSIS_PACK/raw/master/</url>
+
+  <releases>
+    <release version="1.0.0" date="2025-01-31">
+      Initial Version
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>Nuvoton</keyword>
+    <keyword>NPCX Family</keyword>
+  </keywords>
+
+  <!-- devices section (mandatory for Device Family Packs) -->
+  <devices>
+    <family Dfamily="Nuvoton Embedded Controller Family" Dvendor="Nuvoton:18">
+      <description>
+The NPCX is a family of highly integrated embedded controllers (EC) with an embedded ARM core and 
+integrated advanced functions. It is targeted for a wide range of portable and desktop applications
+and provides best-in-class, complete EC functionality.
+      </description>
+
+      <!-- ************************  Subfamily 'NPCX4mnx'  **************************** -->
+      <subFamily DsubFamily="NPCX4mnx">
+        <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="SP_FPU" Dmpu="MPU" Dendian="Little-endian"/>
+
+        <!-- *************************  Device 'NPCX498S'  ***************************** -->
+        <device Dname="NPCX498S">
+          <debug svd="SVD/NPCX498S.svd"/>
+
+          <memory name="BOOTROM"       access="rx"  start="0x00000000" size="0x4000" default="1" startup="1"/>
+          <memory name="CODERAM"       access="rwx" start="0x00000000" size="0x4000" default="1"/>
+          <memory name="DATARAM"       access="rwx" start="0x00000000" size="0x4000" default="1"/>
+          <memory name="BBRAM"         access="rw"  start="0x20000000" size="0x0800" default="1"/>
+          <memory name="InternalFlash" access="r"   start="0x00000000" size="0x4000" default="1"/>
+          <memory name="ExternalFlash" access="r"   start="0x00000000" size="0x4000" default="1"/>
+
+          <algorithm name="Flash/NPCX498S_Int.FLM" start="0x00000000" size="0x8000" RAMstart="0x20000000" RAMsize="0x1000" default="1"/>
+          <algorithm name="Flash/NPCX498S_Ext.FLM" start="0x00100000" size="0x1000" RAMstart="0x20000000" RAMsize="0x1000" default="0"/>
+        </device>
+      </subFamily>
+    </family>
+  </devices>
+
+  <!-- conditions section (optional for all Software Packs)-->
+  <conditions>
+    <condition id="ARMCC6">
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="GCC">
+      <require Tcompiler="GCC"/>
+    </condition>
+
+    <condition id="Nuvoton NPCX4mnx">
+      <!-- conditions selecting Devices -->
+      <description>Nuvoton NPCX4mnx Series devices</description>
+      <require Dvendor="Nuvoton:18" Dname="NPCX4mnx*"/>
+    </condition>
+
+    <condition id="Nuvoton NPCX9mnx">
+      <!-- conditions selecting Devices -->
+      <description>Nuvoton NPCX9mnx Series devices</description>
+      <require Dvendor="Nuvoton:18" Dname="NPCX9mnx*"/>
+    </condition>
+
+  </conditions>
+  
+  <!-- component section (optional for all Software Packs)-->
+  <components>
+    <!-- Nuvoton NPCX4mnx -->
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="Nuvoton NPCX4mnx">
+      <description>System Startup for Nuvoton NPCX4mnx Series</description>
+      <files>
+        <!-- include folder / device header file -->
+        <file category="header" name="Device/NPCX498S/Include/NPCX498S.h"/>
+        <!-- startup / system file -->
+        <file category="sourceC"      name="Device/NPCX498S/Source/startup_NPCX498S.c"     version="3.0.0" attr="config"/>
+        <file category="sourceC"      name="Device/NPCX498S/Source/system_NPCX498S.c"      version="2.0.0" attr="config"/>
+        <file category="linkerScript" name="Device/NPCX498S/Config/NPCX498S_ac6.sct"       version="1.0.0" attr="config" condition="ARMCC6"/>
+        <file category="linkerScript" name="Device/NPCX498S/Config/NPCX498S_gcc.ld"        version="2.2.0" attr="config" condition="GCC"/>
+      </files>
+    </component>
+  </components>
+
+</package>
