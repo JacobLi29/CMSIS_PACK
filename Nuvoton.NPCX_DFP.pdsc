@@ -4,7 +4,7 @@
   <vendor>Nuvoton</vendor>
   <name>NPCX_DFP</name>
   <description>Nuvoton Embedded Controller Device Family Pack</description>
-  <url>https://github.com/JacobLi29/CMSIS_PACK/raw/main/</url>
+  <url>https://github.com/JacobLi29/CMSIS_PACK/raw/refs/heads/main/</url>
 
   <releases>
     <release version="1.0.0" date="2025-01-31">
